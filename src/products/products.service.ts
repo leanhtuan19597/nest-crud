@@ -9,7 +9,7 @@ export class ProductsService {
 
 
   async create( CreateProductInput: CreateProductInput) {
-    const product = await this.prisma.create({
+    const product = await this.prisma.products.create({
       data: {
         ...CreateProductInput
       },
@@ -18,11 +18,11 @@ export class ProductsService {
   }
 
   findAll() {
-    return this.prisma.product.findMany({});
+    return this.prisma.products.findMany({});
   }
 
   findOne(productId: number){
-    return this.prisma.findFirst({
+    return this.prisma.products.findFirst({
       where: {
         productId: productId,
       }
@@ -30,7 +30,7 @@ export class ProductsService {
   }
 
   async update(productId: number, UpdateProductInput: UpdateProductInput) {
-    const product = await this.prisma.findFirst({
+    const product = await this.prisma.products.findFirst({
       where:{
         productId: productId
       },
@@ -41,7 +41,7 @@ export class ProductsService {
         'Access to resources denied',
       );
     }
-    return this.prisma.update({
+    return this.prisma.products.update({
       where: {
         productId: productId,
       },
@@ -51,7 +51,7 @@ export class ProductsService {
     })
   }
   async remove(productId: number) {
-    const product = await this.prisma.findFirst({
+    const product = await this.prisma.products.findFirst({
       where:{
         productId: productId
       },
@@ -62,9 +62,12 @@ export class ProductsService {
         'Access to resources denied',
       );
     }
-    return this.prisma.update({
+    return this.prisma.products.update({
       where: {
         productId: productId,
+      },
+      data:{
+        
       }
     })
   }

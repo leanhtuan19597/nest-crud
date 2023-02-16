@@ -1,5 +1,3 @@
-
-
 import {
   IsNotEmpty,
   IsNumber,
@@ -7,11 +5,7 @@ import {
   IsString,
 } from 'class-validator';
 
-
 export class CreateProductInput {
-  @IsNotEmpty()
-  @IsNumber()
-  user_id: number;
 
   @IsString()
   @IsNotEmpty()
@@ -19,5 +13,13 @@ export class CreateProductInput {
 
   @IsString()
   @IsOptional()
+  image?: string;
+
+  @IsString()
+  @IsOptional()
   description?: string;
+
+  @IsString()
+  @IsOptional()
+  type?: string;
 }

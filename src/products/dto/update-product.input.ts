@@ -4,16 +4,21 @@ import { CreateProductInput } from 'src/products/dto';
 
 export class UpdateProductInput extends PartialType(CreateProductInput) {
         
-    @IsNotEmpty()
-    user_id
+  @IsString()
+  @IsNotEmpty()
+  title: string;
 
-    @IsString()
-    @IsNotEmpty()
-    title: string;
+  @IsString()
+  @IsOptional()
+  image?: string;
 
-    @IsString()
-    @IsOptional()
-    description?: string;
+  @IsString()
+  @IsOptional()
+  description?: string;
+
+  @IsString()
+  @IsOptional()
+  type?: string;
 
 }
 function InputType() {

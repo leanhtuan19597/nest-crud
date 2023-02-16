@@ -16,8 +16,7 @@ model products {
   description  String?
   type         String?
   created_date DateTime @default(now())
-  created_by   Int?
-  modify_by    Int?
   modify_date  DateTime @updatedAt
+  is_delete    Boolean @default(false)
 
 }

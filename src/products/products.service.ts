@@ -21,10 +21,19 @@ export class ProductsService {
     return this.prisma.products.findMany({});
   }
 
+  findAllActive() {
+    return this.prisma.products.findMany({
+      where:{
+        is_delete: false,
+      }
+    });
+  }
+
   findOne(productId: number){
     return this.prisma.products.findFirst({
       where: {
         productId: productId,
+        is_delete: false, 
       }
     })
   }
@@ -33,7 +42,7 @@ export class ProductsService {
     const product = await this.prisma.products.findFirst({
       where:{
         productId: productId
-      },
+      }
     });
     
     if(!product){
@@ -46,7 +55,8 @@ export class ProductsService {
         productId: productId,
       },
       data:{
-        ...UpdateProductInput
+        ...UpdateProductInput,
+        is_delete: true,
       }
     })
   }
@@ -67,7 +77,7 @@ export class ProductsService {
         productId: productId,
       },
       data:{
-        
+        is_delete: true,
       }
     })
   }
